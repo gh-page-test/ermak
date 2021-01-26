@@ -1,0 +1,105 @@
+{% load static %}
+{% load cache %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+	<script src="https://kit.fontawesome.com/6fa7e4eaaa.js"></script>
+
+	<title>{% block title %}Ermák's{% endblock %}</title>
+
+	{% block head_link %}{% endblock %}
+</head>
+<body>
+
+	<!-- Шапка -->
+	{% block header %}
+	<header>
+			<!-- Лого -->
+
+			<a href="{% url 'portfolio' %}" class="logo">
+				<h1>E R M À K 'S</h1>
+				<h4>P H O T O G R A P H Y </h4>
+			</a>
+			
+			{% block menu %}
+			<!-- Меню -->
+			<nav>
+				<a href="{% url 'portfolio' %}" class="link-nav">PORTFOLIO</a>
+				<div class="btn">
+					<span class="open btn-span" >MENU</span>
+					<span class="close btn-span" >CLOSE</span>
+				</div>
+				<a href="{% url 'about_me' %}" class="link-nav">ABOUT ME</a>
+				
+				<span class="link-nav close btn-span">CLOSE</span>
+			</nav>
+			<span class="open btn-span">MENU</span>
+			{% endblock %}
+
+	</header>
+	{% endblock %}
+
+	{% block content %} {% endblock %}
+
+	<!-- Подвал -->
+	{% block footer %}
+		{% cache 900 footer_cache %}
+			<footer id="footer">
+
+				<!-- Фон -->
+				{% if footer_data.background %}
+					<img id="footer-img" src="{{ footer_data.background.url }}" alt="">
+				{% endif %}
+				
+				<!-- Содержимое -->
+				<div class="footer-contant">
+
+					<div class="footer-logo">
+						<h1>Follow me:</h1>
+					</div>
+					
+					<!-- Соц. сети -->
+					<div class="conacts">
+						<a href="{{ footer_data.inst_link }}" class="footer-link"><i class="fab fa-instagram"></i></a>
+						<a href="{{ footer_data.vk_link }}" class="footer-link"><i class="fab fa-vk"></i></a>
+						<a href="{{ footer_data.tg_link }}" class="footer-link"><i class="fab fa-telegram-plane"></i></a>	
+						<a href="{{ footer_data.youtube_link }}" class="footer-link"><i class="fab fa fa-youtube-play"></i></a>
+					</div>
+					
+					{% if footer_data.quote %} 
+						<p class="footer-text">"{{footer_data.quote}}"</p>			    
+					{% endif %}
+
+					<!-- Контактная информация -->
+					<div class="footer-info">
+						<p>{{footer_data.email}}</p>
+						<p>{{footer_data.tel}}</p>
+						<a class="footer-link link-page footer-up" href="#main"><i class="fas fa-angle-up"></i></a>
+					</div>
+
+				</div>
+
+			</footer>
+		{% endcache %}
+	{% endblock %}
+	
+	{% block water_mark %}
+		<!-- Разработчик -->
+		<div class="up">
+			<a href="{{footer_data.link_dev}}">{{footer_data.name_dev}}</a>
+		</div>
+	{% endblock %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+<script src="{% static 'js/menu.js' %}" ></script>
+{% block script %}{% endblock %}
+
+</body>
+</html>

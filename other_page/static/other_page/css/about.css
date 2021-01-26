@@ -1,0 +1,95 @@
+
+body { 
+	position: relative; 
+	width: 100vw; 
+	height: 100vh; 
+	overflow: hidden;
+}
+
+main {
+	padding: 0;
+	position: absolute;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+.about {
+	width: 100%;
+	height: calc(100% + 125px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.about > img { 
+	position: fixed;
+	z-index: -999;
+	min-height: 100vh;
+	min-width: 100vw;
+}
+
+.about > img:before {}
+
+.text { 
+	width: 80%;
+	padding: 20px;
+	background-color: rgba(0, 0, 0, 0.75);
+	text-align: center;
+	margin: 0;
+	max-height: calc(100vh - 250px);
+	overflow: hidden;	
+}
+
+.wrapper::-webkit-scrollbar { /* chrome based */
+    width: 0px;  /* ширина scrollbar'a */
+    background: transparent;  /* опционально */
+}
+
+.wrapper {
+	overflow-y: scroll;
+ 	-ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none; /* Firefox */
+	padding: 10px 0;
+	max-height: calc(100vh - 270px);
+}
+
+.text > .wrapper > * {
+    font-family: 'Prompt', sans-serif;
+    font-weight: 300;
+}
+
+.text > .wrapper > h4:nth-child(1) {
+	margin: 10px auto;
+	padding-bottom: 10px;
+	width: 50%;
+	border-bottom: 1px solid #fff;
+}
+
+.text > .wrapper > p {
+	color: #fff;
+	margin: 5px;
+}
+
+.wrapper * {
+	color: #fff;
+	text-decoration: none;
+}
+
+span.open { 
+	color: #fff;
+	font-weight: 600;
+}
+
+.social {
+	margin-top: 20px;
+}
+
+@media (min-width: 750px) {
+	.link-nav, 
+	.btn > span,
+	.btn-span {
+		color: #fff;
+		font-weight: 600;
+	}
+}

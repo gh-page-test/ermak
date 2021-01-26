@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cache %}
+
+{% block title %} {{ block.super }} - PORTFOLIO {% endblock %}
+
+{% block head_link %}
+
+	<link rel="stylesheet" href="{% static 'portfolio/css/index.css' %}">
+	
+{% endblock %}
+
+{% block header %}
+
+	{% cache 900 carousel_cache %}
+	    <div class="btn-start">
+			<div id="start-btn" class="logo">
+				<h1>E R M À K 'S</h1>
+				<h4>P H O T O G R A P H Y </h4>
+			</div>
+		</div>
+
+		<div class="bg-wrapper">
+			{% for image in carousel.images.all %}
+				<img src="{{image.image.url}}" class="bg-grad"/>
+			{% endfor %}
+		</div>	
+	{% endcache %}
+
+	{{ block.super }}
+
+{% endblock %}
+
+{% block content %}
+	<main id="main">
+
+		{% if series_of_photos.count != 0 %}
+			<!-- Заголовок -->			
+			<div class="logo-main">
+				<h4>PORTFOLIO</h4>
+			</div>
+			<!-- Плитки фотосетов -->
+			{% for series_of_photo in series_of_photos %}
+			
+				<a href="{% url 'series_of_photos' series_of_photo.pk %}" class="photo">
+					<img src="{{series_of_photo.cover.url}}" alt="">
+					<div class="photo-info">
+						<p class="title" >"{{series_of_photo.title}}"</p>
+						<p class="info" >{{series_of_photo.city}}, {{series_of_photo.date|date:"Y"}}</p>
+					</div>
+				</a>
+		
+	   		{% endfor %}
+
+	   	{% else %}
+
+			<div class="logo-main oops_block">
+				<h4>Ooooooooooooooooops............</h4>
+				<p class="ops" >It's empty! :(</p>
+			</div>
+
+	   	{% endif %}
+
+	</main>
+   
+	<div class="show_more">
+		<p>SHOW MORE</p>
+	</div>
+
+{% endblock %}
+
+{% block script %}
+	<script src="{% static 'portfolio/js/welcome_window.js' %}" ></script>	
+	<script src="{% static 'portfolio/js/show_more.js' %}" ></script>	
+{% endblock %}

@@ -1,0 +1,97 @@
+.models {
+	text-decoration: none;
+	color: #fff;
+}
+
+.date {
+	margin-top: 100px;
+}
+
+.audio_name {
+	margin-top: 10px;
+}
+
+.photo {
+	height: auto;
+	margin: 5px auto;
+	padding: 0;
+	top: 0;
+	left: 0;
+	width: auto;
+	order: 0;
+}
+
+.photo-link {
+	margin: auto;
+	padding: 0;
+	width: auto;
+	height: auto;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: center;
+	-ms-align-items: center;
+	align-items: center;
+	order: 0;
+}
+
+.photo-set-info {
+	width: 100%;
+	margin-bottom: 5px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
+	justify-content: flex-start;
+	-ms-align-items: center;
+	align-items: center;
+	height: auto;
+}
+
+.photo-set-info > h3,
+.photo-set-info > h4 {
+	text-align: center;
+	width: 90%;
+	font-family: 'Prompt', sans-serif;
+	font-weight: 300;
+	color: #fff;
+}
+
+.photo-set-info > h3 {
+	font-size: 1.2em;
+	margin: 10px auto;
+}
+
+.photo-set-info > h4 {
+	font-size: 0.9em;
+	margin-bottom: 15px;
+}
+
+.photo-set-info > p{
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	color: #fff;
+}
+
+p.click {
+	margin: 20px auto;
+	font-size: 0.75em;
+	width: 80%;
+}
+
+.date {
+	margin-top: 0px;
+}
+
+.audio_name {
+	margin-top: 10px;
+}

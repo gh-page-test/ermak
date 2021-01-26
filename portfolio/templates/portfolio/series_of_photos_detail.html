@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ block.super }} - {{series_of_photos.title}} {% endblock %}
+
+{% block head_link %}
+
+	<link rel="stylesheet" href="{% static 'portfolio/css/set.css' %}">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"/>
+
+{% endblock %}
+
+
+{% block content %}
+	<main id="main">
+
+		<div class="logo-main">
+			<h4>"{{series_of_photos.title}}"</h4>
+		</div>
+
+		<div class="photo-set-info">
+			{% if series_of_photos.description %}
+				<p>{{series_of_photos.description}}</p>
+			{% endif %}
+			
+			<h3> model: 
+				{% for photomodels in series_of_photos.photomodels.all %}
+					<a class="models" href="{{photomodels.link}}">{{photomodels.name}}</a> 
+				{% endfor %}
+			</h3>
+			<h4 class="date" >{{series_of_photos.city}}, {{series_of_photos.date|date:"M - Y"}}</h4>
+
+			{% if series_of_photos.audio %}
+				<h4 class="audio_name" >{{series_of_photos.audio.name}}</h4>
+				<audio controls>
+				    <source src="{{series_of_photos.audio.file.url}}" controls="controls">
+				    <p>Ваш браузер не поддерживает аудио</p>
+		  		</audio>
+	  		{% endif %}
+	  		<p class="click">* Кликните на фото для подробного просмотра.</p>
+		</div>
+
+
+		<a href="{{series_of_photos.cover.url}}" data-fancybox="gallery" class="photo-link">
+			<img src="{{series_of_photos.cover.url}}" alt="Девушка на фото настолько красива, что браузер не смог прогрузить ее фото... " class="photo">
+		</a>
+
+		{% for photo in series_of_photos.photos.all %}		
+			<a href="{{photo.photo.url}}" data-fancybox="gallery" class="photo-link">
+				<img src="{{photo.photo.url}}" alt="Девушка на фото настолько красива, что браузер не смог прогрузить ее фото... " class="photo">
+			</a>
+		{% endfor %}
+
+	</main>
+
+{% endblock %}
+
+{% block script %}
+
+	<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+	<script src="{% static 'js/grid.js' %}" ></script>
+	
+{% endblock %}
